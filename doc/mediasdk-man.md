@@ -5228,7 +5228,11 @@ typedef struct {
 
 **Description**
 
-The `mfxExtMasteringDisplayColourVolume` configures the HDR SEI message. If application attaches this structure to the [mfxEncodeCtrl](#mfxEncodeCtrl) at [runtime](#MFXVideoENCODE_EncodeFrameAsync), the encoder inserts the HDR SEI message for current frame and ignores `InsertPayloadToggle`. If application attaches this structure to the [mfxVideoParam](#mfxVideoParam) during [initialization](#MFXVideoENCODE_Init) or [reset](#MFXVideoENCODE_Reset), the encoder inserts HDR SEI message based on `InsertPayloadToggle`. Fields semantic defined in ITU-T* H.265 Annex D.
+The `mfxExtMasteringDisplayColourVolume` configures the HDR SEI message. Fields semantic defined in ITU-T* H.265 Annex D.
+
+For the encoder, If application attaches this structure to the [mfxEncodeCtrl](#mfxEncodeCtrl) at [runtime](#MFXVideoENCODE_EncodeFrameAsync), the encoder inserts the HDR SEI message for current frame and ignores `InsertPayloadToggle`. If application attaches this structure to the [mfxVideoParam](#mfxVideoParam) during [initialization](#MFXVideoENCODE_Init) or [reset](#MFXVideoENCODE_Reset), the encoder inserts HDR SEI message based on `InsertPayloadToggle`.
+
+For the decoder, if the application attaches this structure to the `outputSurface` and the current decode frame have *Display Colour Volume* SEI, the decoder fills the SEI message into this structure and set `InsertPayloadToggle` to `MFX_PAYLOAD_IDR`. If application attaches this structure to the `outputSurface` and the current decode frame does not have *Display Colour Volume* SEI, the decoder fills the default value `0` into this structure and set `InsertPayloadToggle` to `MFX_PAYLOAD_OFF`.
 
 **Members**
 
@@ -5260,7 +5264,11 @@ typedef struct {
 
 **Description**
 
-The `mfxExtContentLightLevelInfo` structure configures the HDR SEI message. If application attaches this structure to the [mfxEncodeCtrl](#mfxEncodeCtrl) structure at [runtime](#MFXVideoENCODE_EncodeFrameAsync), the encoder inserts the HDR SEI message for current frame and ignores `InsertPayloadToggle`. If application attaches this structure to the [mfxVideoParam](#mfxVideoParam) structure during [initialization](#MFXVideoENCODE_Init) or [reset](#MFXVideoENCODE_Reset), the encoder inserts HDR SEI message based on `InsertPayloadToggle`. Fields semantic defined in ITU-T* H.265 Annex D.
+The `mfxExtContentLightLevelInfo` structure configures the HDR SEI message. Fields semantic defined in ITU-T* H.265 Annex D.
+
+For the encoder, if application attaches this structure to the [mfxEncodeCtrl](#mfxEncodeCtrl) structure at [runtime](#MFXVideoENCODE_EncodeFrameAsync), the encoder inserts the HDR SEI message for current frame and ignores `InsertPayloadToggle`. If application attaches this structure to the [mfxVideoParam](#mfxVideoParam) structure during [initialization](#MFXVideoENCODE_Init) or [reset](#MFXVideoENCODE_Reset), the encoder inserts HDR SEI message based on `InsertPayloadToggle`.
+
+For the decoder, if the application attaches this structure to the `outputSurface` and the current decode frame have *Content Light Level* SEI, the decoder fills the SEI message into this structure and set `InsertPayloadToggle` to `MFX_PAYLOAD_IDR`. If application attaches this structure to the `outputSurface` and the current decode frame does not have *Content Light Level* SEI, the decoder fills the default value `0` into this structure and set `InsertPayloadToggle` to `MFX_PAYLOAD_OFF`.
 
 **Members**
 
